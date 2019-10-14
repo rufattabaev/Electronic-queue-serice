@@ -2,7 +2,7 @@ package ru.itpark;
 
 public class QueueService {
 
-
+    private QueueElement first;
 
     private void writeNext(QueueElement next, Person person) {
 
@@ -16,26 +16,24 @@ public class QueueService {
     }
 
 
-    public void addNext(Person person, Queue queue) {
-        if (queue.getFirst() == null) {
-            queue.setFirst(new QueueElement(person));
+    public void addNext(Person person) {
+        if (first == null) {
+            first = new QueueElement(person);
         } else {
-            writeNext(queue.getFirst().getNext(), person);
+            writeNext(first.getNext(), person);
         }
     }
 
 
-    public void deleteFirst(Queue queue) {
-
-        QueueElement first = queue.getFirst();
-        queue.setFirst(first.getNext());
-
+    public void deleteFirst() {
+        if (first != null) {
+            first = first.getNext();
+        }
     }
 
 
-
-    public static int checkQueueSize(Queue queue) {
-        QueueElement element = queue.getFirst();
+    public int checkQueueSize() {
+        QueueElement element = first;
         int queueSize = 0;
         while (element.getPerson() != null) {
             queueSize++;
