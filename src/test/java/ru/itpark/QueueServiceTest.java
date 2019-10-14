@@ -49,7 +49,7 @@ class QueueServiceTest {
 
 
     @Test
-    void checkQueueSize1() {
+    void findQueueSize() {
         Queue queue = new Queue();
         int expectedQueueSize = 4;
         addElements(queue, expectedQueueSize);
